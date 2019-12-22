@@ -13,10 +13,11 @@ int main(){
     for(int i=0;i<width;++i){
         for(int j=0;j<height;++j){
             int color=gdImageGetPixel(img,i,j);
-            int red=255-gdImageRed(img,color);
-            int green=255-gdImageGreen(img,color);
-            int blue=255-gdImageBlue(img,color);
-            color=gdImageColorAllocate(img,red,green,blue);
+            int red=gdImageRed(img,color);
+            int green=gdImageGreen(img,color);
+            int blue=gdImageBlue(img,color);
+            int avg=(red+green+blue)/3;
+            color=gdImageColorAllocate(img,avg,avg,avg);
             gdImageSetPixel(img,i,j,color);
         }
     }
