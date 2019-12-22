@@ -4,8 +4,9 @@
 #include<stdio.h>
 #include<mpi.h>
 void main(int argc,char *argv[]){
-    int rank,size,color,newRank,newSize;
+    int rank,size,color,newRank,newSize,commLen;
     MPI_Comm newCommunicator;
+    char commName[100];
     MPI_Init(&argc,&argv);
     MPI_Comm_rank(MPI_COMM_WORLD,&rank);
     MPI_Comm_size(MPI_COMM_WORLD,&size);
@@ -18,7 +19,8 @@ void main(int argc,char *argv[]){
     MPI_Comm_rank(newCommunicator,&newRank);
     MPI_Comm_size(newCommunicator,&newSize);
 
-    printf("process %d of %d in MPI_COMM_WORLD , %d of %d in new Communicator\n",rank,size,newRank,newSize);
+
+    printf("process %d of %d in MPI_COMM_WORLD , %d of %d in Communicator: %d\n",rank,size,newRank,newSize,color+1);
 
     MPI_Comm_free(&newCommunicator);
     MPI_Finalize();
