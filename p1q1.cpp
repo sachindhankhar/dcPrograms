@@ -16,14 +16,12 @@ vector<int> merge(vector<int>vec,int p,int q,int r){
         ++k;
     }
     if(i<left.size()){
-        #pragma omp parallel for
         for(int x=i;x<left.size();++x){
             vec[k]=left[x];
             ++k;
         }
     }
     if(j<right.size()){
-        #pragma omp parallel for
         for(int x=j;x<right.size();++x){
             vec[k]=right[x];
             ++k;
