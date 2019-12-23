@@ -19,7 +19,9 @@ void main(int argc,char *argv[]){
         partial+=vec1[i]*vec2[i];
     }
     printf("partial sum by process  %d of %d is %d\n",rank,size,partial);
-    MPI_Reduce(&partial,&res,1,MPI_INT,MPI_SUM,0,MPI_COMM_WORLD);
+    MPI_Reduce(&partial,&res,1,MPI_INT,MPI_SUM,0,MPI_COMM_WORLD); //0 in the second last argument is not tag,it is the rank 
+    // of process , res of only this process receives the reduced answer.
+    //to make all process receive reduced answer use MPI_ALLreduce(same arguments except the second last root process rank);
     if(rank==0){
         printf("dot product of vectors :\n");
         for(int i=0;i<12;++i){
